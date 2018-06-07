@@ -18,31 +18,25 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private void initData(List<MyFile> files) {
-        files = new ArrayList<>();
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         RecyclerView recView = (RecyclerView) findViewById(R.id.recView);
         ArrayList<MyFile> files = new ArrayList<>();
         files.add(new MyFile("CS 185 HW1",
                 "Just another homework",
-                "",
+                "Sample Location",
                 new HashSet<String>(Arrays.asList("pdf", "cs185", "hci", "nofile")),
                 R.drawable.ic_insert_drive_file_black_24dp));
         files.add(new MyFile("CS 185 HW2",
                 "Just another homework",
-                "",
+                "Sample Location",
                 new HashSet<String>(Arrays.asList("folder", "cs185", "hci", "nofile")),
                 R.drawable.photo));
 
-        ViewAdapter adapter = new ViewAdapter(files);
+        ViewAdapter adapter = new ViewAdapter(files,this);
         recView.setAdapter(adapter);
         LinearLayoutManager llm = new LinearLayoutManager(null);
         recView.setLayoutManager(llm);

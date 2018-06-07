@@ -4,11 +4,11 @@
 
     <application
         android:allowBackup="true"
+        android:configChanges="orientation|screenSize"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:configChanges="orientation|screenSize"
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
@@ -19,7 +19,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity><activity android:name=".InformActivity"
+        android:parentActivityName=".MainActivity" >
+        <!-- The meta-data tag is required if you support API level 15 and lower -->
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".MainActivity" />
+    </activity>
     </application>
 
 </manifest>

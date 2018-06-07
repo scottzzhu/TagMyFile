@@ -1,5 +1,6 @@
 package edu.ucsb.cs.cs185.gaucho.zzhu.tagmyfile;
 
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -50,6 +51,13 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.PersonViewHold
 
     @Override
     public void onBindViewHolder(ViewAdapter.PersonViewHolder holder, int position) {
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
         holder.fileName.setText(files.get(position).name);
         holder.iconPhoto.setImageResource(files.get(position).photoId);
     }

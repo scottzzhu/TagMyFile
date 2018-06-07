@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
                 new HashSet<String>(Arrays.asList("folder", "cs185", "hci", "nofile")),
                 R.drawable.photo));
 
+
+
         ViewAdapter adapter = new ViewAdapter(files,this);
         recView.setAdapter(adapter);
         LinearLayoutManager llm = new LinearLayoutManager(null);

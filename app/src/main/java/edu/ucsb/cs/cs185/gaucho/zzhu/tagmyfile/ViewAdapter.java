@@ -1,5 +1,6 @@
 package edu.ucsb.cs.cs185.gaucho.zzhu.tagmyfile;
 
+import android.arch.persistence.room.Entity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Parcel;
@@ -19,7 +20,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
+@Entity(primaryKeys = {"name"})
 class MyFile implements Parcelable{
     String name;
     String description;

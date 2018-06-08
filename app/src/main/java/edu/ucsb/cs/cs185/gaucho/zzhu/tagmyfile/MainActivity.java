@@ -23,37 +23,48 @@ import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
+    Context context = this;
+    final ArrayList<MyFile> files = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         final RecyclerView recView = (RecyclerView) findViewById(R.id.recView);
-        final ArrayList<MyFile> files = new ArrayList<>();
-
-        files.add(new MyFile("CS 185 HW1",
-                "Just another homework",
-                "Sample Location",
-                new HashSet<String>(Arrays.asList("pdf", "cs185", "hci", "nofile")),
-                R.drawable.ic_insert_drive_file_black_24dp));
-        files.add(new MyFile("CS 185 HW2",
-                "Just another homework",
-                "Sample Location",
-                new HashSet<String>(Arrays.asList("folder", "cs185", "hci", "nofile")),
-                R.drawable.photo));
 
         Intent intent = getIntent();
-        Log.d("restart", (intent!=null)+"");
-        if(intent != null) {
+
+        if(intent.getExtras() == null) {
+            AppDatabase.getAppDatabase(this).Dao().insertFile(new MyFile("CS 185 HW1",
+                    "Just another homework",
+                    "Sample Location",
+                    new HashSet<String>(Arrays.asList("pdf", "cs185", "hci", "nofile", "asdhuawdbashdas")),
+                    R.drawable.ic_insert_drive_file_black_24dp));
+            AppDatabase.getAppDatabase(this).Dao().insertFile(new MyFile("CS 185 HW2",
+                    "Just another homework",
+                    "Sample Location",
+                    new HashSet<String>(Arrays.asList("folder", "cs185", "hci", "nofile")),
+                    R.drawable.photo));
+        }
+
+        files.addAll(Arrays.asList(AppDatabase.getAppDatabase(this).Dao().loadAllFiles()));
+
+        Log.d("restart", (intent != null) + "");
+        if (intent != null) {
             String initSearch = intent.getStringExtra("search");
-            if(initSearch!=null)Log.d("inits",initSearch);
+            if(intent.getExtras() != null) {
+                MyFile newFile = intent.getExtras().getParcelable("newFile");
+                if(newFile != null)files.add(newFile);
+            }
+            if (initSearch != null) Log.d("inits", initSearch);
             SearchView sv = findViewById(R.id.searchView);
             sv.setQuery(initSearch, false);
 
             ArrayList<MyFile> useFile = new ArrayList<>();
-            if(initSearch!=null) {
+            if (initSearch != null) {
                 for (int i = 0; i < files.size(); i++) {
-                    Set<String> nowSet = files.get(i).tagList;
+                    Set<String> nowSet = files.get(i).tagList.tagList;
                     ArrayList<String> now = new ArrayList<>();
                     now.addAll(nowSet);
                     for (int j = 0; j < now.size(); j++) {
@@ -63,25 +74,24 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }
+            } else {
+                Log.d("","No Tag");
+                useFile = files;
             }
-            else {
-                useFile=files;
-            }
-            ViewAdapter adapter = new ViewAdapter(useFile,sv.getContext());
+            ViewAdapter adapter = new ViewAdapter(useFile, sv.getContext());
             recView.setAdapter(adapter);
-
         }
 
         final SearchView sv = findViewById(R.id.searchView);
+        sv.setIconifiedByDefault(false);
         sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-
             @Override
             public boolean onQueryTextSubmit(String s) {
                 ArrayList<MyFile> useFile = new ArrayList<>();
-                if(s!="") {
+                if (!s.equals("")) {
                     Log.d("query", s);
                     for (int i = 0; i < files.size(); i++) {
-                        Set<String> nowSet = files.get(i).tagList;
+                        Set<String> nowSet = files.get(i).tagList.tagList;
                         ArrayList<String> now = new ArrayList<>();
                         now.addAll(nowSet);
                         for (int j = 0; j < now.size(); j++) {
@@ -90,24 +100,24 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             }
                         }
-                        Log.d("query", s+" "+i);
+                        Log.d("query", s + " " + i);
                     }
+                } else {
+                    useFile = files;
                 }
-                else {
-                    useFile=files;
-                }
-                ViewAdapter adapter = new ViewAdapter(useFile,sv.getContext());
+                ViewAdapter adapter = new ViewAdapter(useFile, sv.getContext());
                 recView.setAdapter(adapter);
 
                 return true;
             }
+
             @Override
             public boolean onQueryTextChange(String s) {
                 ArrayList<MyFile> useFile = new ArrayList<>();
-                if(s!="") {
+                if (!s.equals("")) {
                     Log.d("query", s);
                     for (int i = 0; i < files.size(); i++) {
-                        Set<String> nowSet = files.get(i).tagList;
+                        Set<String> nowSet = files.get(i).tagList.tagList;
                         ArrayList<String> now = new ArrayList<>();
                         now.addAll(nowSet);
                         for (int j = 0; j < now.size(); j++) {
@@ -116,13 +126,12 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             }
                         }
-                        Log.d("query", s+" "+i);
+                        Log.d("query", s + " " + i);
                     }
+                } else {
+                    useFile = files;
                 }
-                else {
-                    useFile=files;
-                }
-                ViewAdapter adapter = new ViewAdapter(useFile,sv.getContext());
+                ViewAdapter adapter = new ViewAdapter(useFile, sv.getContext());
                 recView.setAdapter(adapter);
 
 
@@ -137,8 +146,8 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(context,AddActivity.class);
+                context.startActivity(intent);
             }
         });
     }

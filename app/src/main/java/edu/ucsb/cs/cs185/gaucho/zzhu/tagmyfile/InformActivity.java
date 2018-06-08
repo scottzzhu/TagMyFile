@@ -43,7 +43,7 @@ public class InformActivity extends AppCompatActivity {
         infoPhoto.setImageResource(message.photoId);
         Log.d("infoPhoto", ""+message.photoId);
 
-        ArrayList<String> myTags = new ArrayList<>(message.tagList);
+        ArrayList<String> myTags = new ArrayList<>(message.tagList.tagList);
         Collections.sort(myTags.subList(0, myTags.size()));
         int maxWidth = getWindowManager().getDefaultDisplay().getWidth() - 200;
         int curWidth = 0;
@@ -56,7 +56,9 @@ public class InformActivity extends AppCompatActivity {
 
             final Button tmpButton = new Button(this);
             Log.d("ButtonText", i);
+            tmpButton.setBackground(getDrawable(R.drawable.tagbutton));
             tmpButton.setText(i);
+            tmpButton.setTextColor(0xFFFFFFFF);
             tmpButton.setLayoutParams(new ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT));

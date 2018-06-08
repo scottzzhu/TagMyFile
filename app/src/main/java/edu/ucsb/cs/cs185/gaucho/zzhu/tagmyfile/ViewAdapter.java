@@ -20,57 +20,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-@Entity(primaryKeys = {"name"})
-class MyFile implements Parcelable{
-    String name;
-    String description;
-    String path;
-    Set<String> tagList;
-    Integer photoId;
-
-    MyFile(String name, String description, String path, Set<String> tagList, Integer photoId) {
-        this.name = name;
-        this.description = description;
-        this.path = path;
-        this.tagList = tagList;
-        this.photoId = photoId;
-    }
-
-    MyFile(Parcel in) {
-        this.tagList = new HashSet<>(Arrays.asList(in.createStringArray()));
-        this.name = in.readString();
-        this.description = in.readString();
-        this.path = in.readString();
-        this.photoId = in.readInt();
-    }
-
-    public static final Creator<MyFile> CREATOR = new Creator<MyFile>() {
-        @Override
-        public MyFile createFromParcel(Parcel in) {
-            return new MyFile(in);
-        }
-
-        @Override
-        public MyFile[] newArray(int size) {
-            return new MyFile[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeStringArray(tagList.toArray(new String[tagList.size()]));
-        parcel.writeString(name);
-        parcel.writeString(description);
-        parcel.writeString(path);
-        parcel.writeInt(photoId);
-
-    }
-}
 
 public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.PersonViewHolder>{
 

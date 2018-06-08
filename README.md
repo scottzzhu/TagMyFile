@@ -12,4 +12,4 @@ RecyclerView: https://code.tutsplus.com/tutorials/getting-started-with-recyclerv
 
 Tag List: https://stackoverflow.com/questions/6996837/android-multi-line-linear-layout
 
-Room Database: https://medium.com/@ajaysaini.official/building-database-with-room-persistence-library-ecf7d0b8f3e9
+Room Database: https://medium.com/@ajaysaini.official/building-database-with-room-persistence-library-ecf7d0b8f3e9 and https://stackoverflow.com/questions/44582397/android-room-persistent-library-typeconverter-error-of-error-cannot-figure-ou

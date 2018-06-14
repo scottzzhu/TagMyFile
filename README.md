@@ -1,10 +1,10 @@
-## TagMyFile
+# TagMyFile
 
-# Tag My File
+## Tag My File
 
 Android based file folding system
 
-# Acknowledgement
+## Acknowledgement
 
 Official Android Developers Guide
 

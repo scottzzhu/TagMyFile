@@ -10,13 +10,13 @@ Managing files can be a difficult task for users, and the default file manager i
 
 ## Problem Scenarios
 
- - Search for files
+ + Search for files
  
- - Show detail of a file
+ + Show detail of a file
  
- - Get all files with a tag from one file
+ + Get all files with a tag from one file
 
- - Add new file into the manager
+ + Add new file into the manager
  
 ## Evaluation
 

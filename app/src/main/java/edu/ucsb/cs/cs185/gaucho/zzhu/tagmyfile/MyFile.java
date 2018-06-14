@@ -20,6 +20,9 @@ class TagList {
     public TagList(Set<String> tagList){
         this.tagList = tagList;
     }
+    public void add(String str)  {
+        this.tagList.add(str);
+    }
 }
 
 @Entity(primaryKeys = {"name"})

@@ -17,6 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 public class InformActivity extends AppCompatActivity {
@@ -34,8 +35,20 @@ public class InformActivity extends AppCompatActivity {
         ImageView infoPhoto = (ImageView)findViewById(R.id.info_photo);
         LinearLayout listList = findViewById(R.id.list_list);
 
+        Button del = (Button) findViewById(R.id.delete_button);
+
+
         Intent intent = getIntent();
-        MyFile message = intent.getExtras().getParcelable("file");
+        final MyFile message = intent.getExtras().getParcelable("file");
+
+        del.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppDatabase.getAppDatabase(context).Dao().delete(message);
+                Intent intent = new Intent(context,MainActivity.class);
+                context.startActivity(intent);
+            }
+        });
 
         title.setText(message.name);
         desc.setText(message.description);

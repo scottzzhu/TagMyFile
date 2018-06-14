@@ -29,10 +29,10 @@ Managing files can be a difficult task for users, and the default file manager i
 
 ## Acknowledgement
 
-Official Android Developers Guide
+[Official Android Developers Guide](https://developer.android.com/)
 
-RecyclerView: https://code.tutsplus.com/tutorials/getting-started-with-recyclerview-and-cardview-on-android--cms-23465
+[RecyclerView](https://code.tutsplus.com/tutorials/getting-started-with-recyclerview-and-cardview-on-android--cms-23465)
 
-Tag List: https://stackoverflow.com/questions/6996837/android-multi-line-linear-layout
+[Tag List](https://stackoverflow.com/questions/6996837/android-multi-line-linear-layout)
 
-Room Database: https://medium.com/@ajaysaini.official/building-database-with-room-persistence-library-ecf7d0b8f3e9 and https://stackoverflow.com/questions/44582397/android-room-persistent-library-typeconverter-error-of-error-cannot-figure-ou
+[Room Database](https://medium.com/@ajaysaini.official/building-database-with-room-persistence-library-ecf7d0b8f3e9 and https://stackoverflow.com/questions/44582397/android-room-persistent-library-typeconverter-error-of-error-cannot-figure-ou)
